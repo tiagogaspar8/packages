@@ -1,0 +1,16 @@
+#!/bin/sh /etc/rc.common
+# Example script
+# Copyright (C) 2007 OpenWrt.org
+
+START=60
+STOP=60
+
+start() {
+        /sbin/modprobe jool_siit
+        /usr/bin/jool_siit file handle /etc/jool/jool-siit.conf.json
+
+}
+
+stop() {
+        /usr/bin/jool_siit -f /etc/jool/jool-siit.conf.json instance remove
+}

@@ -125,6 +125,12 @@ define Package/jool-tools/install
 		$(1)/usr/lib/iptables
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/iptables/libxt_JOOL.so \
 		$(1)/usr/lib/iptables
+	$(INSTALL_DIR) $(1)/etc/jool
+	$(INSTALL_DATA) ./files/jool-nat64.conf.json $(1)/etc/jool/jool-nat64.conf.json.default
+	$(INSTALL_DATA) ./files/jool-siit.conf.json $(1)/etc/jool/jool-siit.conf.json.default
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/jool-nat64.init $(1)/etc/init.d/jool-nat64
+	$(INSTALL_BIN) ./files/jool-siit.init $(1)/etc/init.d/jool-siit
 endef
 
 $(eval $(call BuildPackage,jool))
